@@ -5,6 +5,14 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.spotifyclone.ui.HomeFragment"
+        android:name="com.example.spotifyclone.ui.fragments.HomeFragment"
         android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/songFragment"
+        android:name="com.example.spotifyclone.ui.fragments.SongFragment"
+        android:label="SongFragment" />
+
+    <action
+        android:id="@+id/globalActionToSongFragment"
+        app:destination="@+id/songFragment"/>
 </navigation>

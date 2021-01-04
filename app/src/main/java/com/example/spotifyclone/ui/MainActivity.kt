@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.media.session.PlaybackStateCompat
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
+import androidx.navigation.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.RequestManager
 import com.example.spotifyclone.R
@@ -64,6 +65,31 @@ class MainActivity : AppCompatActivity() {
                 mainviewModel.playOrToggleSong(it,true)
             }
         }
+
+        swipeSongAdapter.setItemClickListener {
+            findNavController(R.id.navHostFragment).navigate(
+                    R.id.globalActionToSongFragment
+            )
+        }
+
+        findNavController(R.id.navHostFragment).addOnDestinationChangedListener { controller, destination, arguments ->
+            when(destination.id){
+                R.id.songFragment -> hideBottomBar()
+                R.id.homeFragment -> showBottomBar()
+                else -> showBottomBar()
+            }
+        }
+    }
+
+    private fun hideBottomBar(){
+        binding.ivCurSongImage.isVisible = false
+        binding.vpSong.isVisible = false
+        binding.ivPlayPause.isVisible = false
+    }
+    private fun showBottomBar(){
+        binding.ivCurSongImage.isVisible = true
+        binding.vpSong.isVisible = true
+        binding.ivPlayPause.isVisible = true
     }
 
     private fun swithcViewPagerToCurSong(song:Song){
@@ -110,7 +136,7 @@ class MainActivity : AppCompatActivity() {
                 when(result.status){
                     Status.ERROR -> Snackbar.make(
                             binding.rootLayout,
-                            result.message ?: "An Unknown Error Occured",
+                            result.message ?: "An Unknown Error Occurred",
                             Snackbar.LENGTH_LONG
                     ).show()
                     else -> Unit

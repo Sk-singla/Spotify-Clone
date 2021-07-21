@@ -14,7 +14,9 @@ import com.example.spotifyclone.data.entities.Song
 import com.example.spotifyclone.databinding.ActivityMainBinding
 import com.example.spotifyclone.exoplayer.isPlaying
 import com.example.spotifyclone.exoplayer.toSong
+import com.example.spotifyclone.other.MainViewModelHandler
 import com.example.spotifyclone.other.Status
+import com.example.spotifyclone.ui.fragments.UploadSongFragment
 import com.example.spotifyclone.ui.viewmodel.MainViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,6 +48,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         subscribeToObservers()
 
+        MainViewModelHandler.viewModel = mainviewModel
+
         binding.vpSong.adapter = swipeSongAdapter
 
         binding.vpSong.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
@@ -76,6 +80,7 @@ class MainActivity : AppCompatActivity() {
             when(destination.id){
                 R.id.songFragment -> hideBottomBar()
                 R.id.homeFragment -> showBottomBar()
+                R.id.uploadSongFragment -> hideBottomBar()
                 else -> showBottomBar()
             }
         }

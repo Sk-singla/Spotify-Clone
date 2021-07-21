@@ -27,6 +27,8 @@
 
     </FrameLayout>
 
+
+
     <ImageView
         android:id="@+id/ivCurSongImage"
         android:layout_width="56dp"

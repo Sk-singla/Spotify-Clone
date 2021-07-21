@@ -28,7 +28,7 @@ class SongFragment: Fragment(R.layout.fragment_song) {
     @Inject
     lateinit var glide: RequestManager
 
-    private lateinit var mainViewModel: MainViewModel
+    private val mainViewModel: MainViewModel by viewModels()
     private val songViewModel: SongViewModel by viewModels()
 
     private var curPlayingSong: Song? = null
@@ -42,7 +42,6 @@ class SongFragment: Fragment(R.layout.fragment_song) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSongBinding.bind(view)
 
-        mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         subscribeToObservers()
 
         binding.ivPlayPauseDetail.setOnClickListener{

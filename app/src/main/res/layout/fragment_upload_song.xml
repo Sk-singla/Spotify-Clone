@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mediumDarkBackground"
+    android:padding="10dp"
+    >
+
+    <ImageView
+        android:id="@+id/songImage"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_music"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <EditText
+        android:id="@+id/songTitleEt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Song Title"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:maxLines="1"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/subTitleEt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/songImage"
+        app:layout_constraintTop_toTopOf="@id/songImage" />
+
+    <EditText
+        android:id="@+id/subTitleEt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Subtitle"
+        android:maxLines="1"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/songImage"
+        app:layout_constraintTop_toBottomOf="@+id/songTitleEt" />
+
+
+    <TextView
+        android:id="@+id/selectedSongName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No song selected"
+        app:layout_constraintTop_toBottomOf="@id/subTitleEt"
+        android:textAlignment="center"
+        android:layout_margin="32dp"
+        android:textSize="24sp"/>
+
+    <Button
+        android:id="@+id/selectSongBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:text="Select Song"
+        app:layout_constraintTop_toBottomOf="@id/selectedSongName"
+        />
+
+    <Button
+        android:id="@+id/uploadSong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload Song"
+        android:layout_margin="32dp"
+        app:layout_constraintTop_toBottomOf="@id/selectSongBtn"
+        />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

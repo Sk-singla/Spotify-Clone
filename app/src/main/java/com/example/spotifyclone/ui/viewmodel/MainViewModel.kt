@@ -2,6 +2,7 @@ package com.example.spotifyclone.ui.viewmodel
 
 import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.MediaMetadataCompat.METADATA_KEY_MEDIA_ID
+import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,8 +14,11 @@ import com.example.spotifyclone.exoplayer.isPlaying
 import com.example.spotifyclone.exoplayer.isPrepared
 import com.example.spotifyclone.other.Constants.MEDIA_ROOT_ID
 import com.example.spotifyclone.other.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MainViewModel @ViewModelInject constructor(
+@HiltViewModel
+class MainViewModel @Inject constructor(
     private val musicServiceConnection: MusicServiceConnection
 ) : ViewModel() {
     private val _mediaItems = MutableLiveData<Resource<List<Song>>>()
@@ -44,7 +48,11 @@ class MainViewModel @ViewModelInject constructor(
                     )
                 }
                 _mediaItems.postValue(Resource.success(items))
+            }
 
+            override fun onError(parentId: String) {
+                super.onError(parentId)
+                Log.d("spotify error",parentId)
             }
         })
     }
